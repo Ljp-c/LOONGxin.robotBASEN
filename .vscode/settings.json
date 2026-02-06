@@ -1,0 +1,9 @@
+{
+    "C_Cpp.default.compilerPath": "d:/LoongIDE2/la64-tool/bin/loongarch64-newlib-elf-gcc.exe",
+    "C_Cpp.default.includePath": [
+        "D:\\LoongIDE2\\Template\\ls2k300\\drivers\\include",
+        ".\\include",
+        ".\\BareMetal\\**"
+    ],
+    "C_Cpp.dimInactiveRegions": false
+}

@@ -1,0 +1,176 @@
+OUTPUT_FORMAT("elf64-loongarch", "elf64-loongarch", "elf64-loongarch")
+
+OUTPUT_ARCH("loongarch")
+
+_RamSize = DEFINED(_RamSize) ? _RamSize : 256M;
+_StackSize = DEFINED(_StackSize) ? _StackSize : 0x4000; /* 16k */
+
+ENTRY(_start)
+
+SECTIONS
+{
+    /*
+     * sections, merged into text segment:
+     *
+     * CACHED:   0x9000000000000000
+     * UNCACHED: 0x8000000000000000
+     *
+     * cached address, from 8M
+     */
+    . = 0x9000000000800000;
+    .text :
+    {
+        _ftext = . ;
+        *(.start)
+        *(.text)
+        *(.rodata)
+        *(.rodata1)
+        *(.reginfo)
+        *(.init)
+        *(.stub)
+        /* .gnu.warning sections are handled specially by elf32.em. */
+        *(.gnu.warning)
+        /* cherry usb */
+        . = ALIGN(8);
+        __usbh_class_info_start__ = .;
+        KEEP(*(.usbh_class_info))
+        __usbh_class_info_end__ = .;
+        . = ALIGN(8);
+    } = 0
+
+    _etext = . ;
+    PROVIDE (etext = .);
+
+    .fini : { *(.fini) } = 0
+
+    .data :
+    {
+        . = ALIGN(16);
+        _fdata = . ;
+        *(.data)
+        . = ALIGN(32);
+        *(.data.align32)
+        . = ALIGN(64);
+        *(.data.align64)
+        . = ALIGN(128);
+        *(.data.align128)
+        . = ALIGN(4096);
+        *(.data.align4096)
+         CONSTRUCTORS
+    }
+
+    . = ALIGN(16);
+    .data1 : { *(.data1) }
+
+    .ctors :
+    {
+        . = ALIGN(16);
+        __CTOR_LIST__ = . ;
+        LONG((__CTOR_END__ - __CTOR_LIST__) / 4 - 2)
+        *(.init_array)
+        LONG(0)
+        __CTOR_END__ = . ;
+    }
+
+    .dtors :
+    {
+        . = ALIGN(16);
+        __DTOR_LIST__ = . ;
+        LONG((__DTOR_END__ - __DTOR_LIST__) / 4 - 2)
+        *(.fini_array)
+        LONG(0)
+        __DTOR_END__ = . ;
+    }
+
+    _gp = ALIGN(16) + 0x7ff0;
+
+    .got :
+    {
+        *(.got.plt)
+        *(.got)
+     }
+
+    /*
+     * We want the small data sections together, so single-instruction offsets can access them all,
+     * and initialized data all before uninitialized, so we can shorten the on-disk segment size.
+     */
+
+    .sdata : { *(.sdata) }
+    .lit8  : { *(.lit8)  }
+    .lit4  : { *(.lit4)  }
+
+    _edata  =  . ;
+    PROVIDE (edata = .);
+
+    . = ALIGN(16);
+    __bss_start = . ;
+    _fbss = . ;
+
+    .sbss :
+    {
+        *(.sbss)
+        *(.scommon)
+    }
+
+    . = ALIGN(16);
+    .bss :
+    {
+        *(.dynbss)
+        *(.bss)
+        . = ALIGN(32);
+        *(.bss.align32)
+        . = ALIGN(64);
+        *(.bss.align64)
+        . = ALIGN(128);
+        *(.bss.align128)
+        . = ALIGN(4096);
+        *(.bss.align4096)
+        *(COMMON)
+    }
+
+    . = ALIGN(32);
+    PROVIDE (__bss_end = .);
+
+    .stack :
+    {
+        . = ALIGN(32);
+        __stack_start = .;
+        . += _StackSize;        /* system stack */
+        __stack_end = .;
+    }
+
+    _end = . ;
+    PROVIDE (end = .);
+
+    /*
+     * Specify the biosdata location to separate the code that is copied to locked cache
+     */
+
+    . = ALIGN(32);
+    .biosdata   : { *(.biosdata) }
+    PROVIDE (biosdata_end = .);
+
+    /* These are needed for ELF backends which have not yet been
+       converted to the new style linker.  */
+
+    .stab 0 :    { *(.stab) }
+    .stabstr 0 : { *(.stabstr) }
+
+    /* DWARF debug sections.
+       Symbols in the .debug DWARF section are relative to the beginning of the
+       section so we begin .debug at 0.  It's not clear yet what needs to happen
+       for the others.   */
+    .debug          0 : { *(.debug) }
+    .debug_srcinfo  0 : { *(.debug_srcinfo)  }
+    .debug_aranges  0 : { *(.debug_aranges)  }
+    .debug_pubnames 0 : { *(.debug_pubnames) }
+    .debug_sfnames  0 : { *(.debug_sfnames)  }
+    .line           0 : { *(.line) }
+
+    /* These must appear regardless of. */
+
+    .gptab.sdata : { *(.gptab.data) *(.gptab.sdata) }
+    .gptab.sbss :  { *(.gptab.bss)  *(.gptab.sbss)  }
+}
+
+

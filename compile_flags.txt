@@ -1,0 +1,12 @@
+-ID:/LoongIDE2/loogDEV/robotbasen/include
+-ID:/LoongIDE2/loogDEV/robotbasen/BareMetal/osal
+-ID:/LoongIDE2/loogDEV/robotbasen/BareMetal/PesudoOS
+-ID:/LoongIDE2/loogDEV/robotbasen/APP
+-ID:/LoongIDE2/loogDEV/robotbasen/src
+-ID:/LoongIDE2/loogDEV/robotbasen/src/drivers/mpu6050
+-ID:/LoongIDE2/loogDEV/robotbasen/src/drivers/readar
+-ID:/LoongIDE2/loogDEV/robotbasen/src/drivers/uart
+-ID:/LoongIDE2/loogDEV/robotbasen/src/hal/gpio
+-DLIB_BSP
+-DLS2K300
+-DOS_PESUDO

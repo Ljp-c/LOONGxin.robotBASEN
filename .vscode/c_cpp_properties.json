@@ -1,0 +1,32 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/BareMetal/osal",
+                "${workspaceFolder}/BareMetal/PesudoOS",
+                "${workspaceFolder}/APP",
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/src/drivers/mpu6050",
+                "${workspaceFolder}/src/drivers/readar",
+                "${workspaceFolder}/src/drivers/uart",
+                "${workspaceFolder}/src/hal/gpio",
+                "${default}"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "LIB_BSP",
+                "LS2K300",
+                "OS_PESUDO"
+            ],
+            "cStandard": "c17",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "windows-gcc-x64"
+        }
+    ],
+    "version": 4
+}
