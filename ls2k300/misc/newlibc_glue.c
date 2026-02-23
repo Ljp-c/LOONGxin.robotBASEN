@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * Copyright (C) 2021-2024 Suzhou Tiancheng Software Inc. All Rights Reserved.
  *
  */
@@ -217,7 +217,7 @@ int _isatty_r(struct _reent *ptr __attribute__((unused)), int fd)
 //-------------------------------------------------------------------------------------------------
 
 /**
- * TODO ±ØÐëÊµÏÖÄÚ´æÏà¹Øº¯Êý
+ * TODO å¿…é¡»å®žçŽ°å†…å­˜ç›¸å…³å‡½æ•°
  */
 extern void *malloc(size_t size);
 extern void *calloc(size_t nmemb, size_t size);
@@ -251,3 +251,4 @@ void _free_r(struct _reent *ignored __attribute__((unused)), void *ptr)
 /*
  * @@ END
  */
+

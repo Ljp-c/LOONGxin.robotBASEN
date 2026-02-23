@@ -1,4 +1,4 @@
-#ifndef __MPU6050_REG_H 
+﻿#ifndef __MPU6050_REG_H 
 #define __MPU6050_REG_H 
  	 
 #define MPU6050_SMPLRT_DIV      0x19 
@@ -30,3 +30,4 @@
 #define MPU6050_DEFAULT_ADDRESS 0x68
 
 #endif 
+

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * Copyright (C) 2021-2024 Suzhou Tiancheng Software Inc. All Rights Reserved.
  */
 /*
@@ -21,7 +21,7 @@ extern "C" {
 
 //-------------------------------------------------------------------------------------
 
-#define PESUDO_TASK_MAX         16          /* Î´Ê¹ÓÃ */
+#define PESUDO_TASK_MAX         16          /* æœªä½¿ç”¨ */
 
 #define PESUDO_STACK_MIN        0x1000      /* 4K */
 #define PESUDO_STACK_MAGIC      0xdeadbeaf5555aaaaULL
@@ -39,49 +39,49 @@ typedef void (*pesudo_task_entry_t)(void *arg);
  * task state
  */
 /*
- * ÈÎÎñÕı³£×´Ì¬
+ * ä»»åŠ¡æ­£å¸¸çŠ¶æ€
  */
 #define PT_STATE_NONE       0x00000000
-#define PT_STATE_IDLE       0x00000001          /* ¸Õ´´½¨Ê±¿ÕÏĞ */
-#define PT_STATE_READY      0x00000002          /* ¾ÍĞ÷ */
-#define PT_STATE_RUNNING    0x00000004          /* ÔËĞĞ */
-#define PT_STATE_SUSPEND    0x00000008          /* ¹ÒÆğ */
+#define PT_STATE_IDLE       0x00000001          /* åˆšåˆ›å»ºæ—¶ç©ºé—² */
+#define PT_STATE_READY      0x00000002          /* å°±ç»ª */
+#define PT_STATE_RUNNING    0x00000004          /* è¿è¡Œ */
+#define PT_STATE_SUSPEND    0x00000008          /* æŒ‚èµ· */
 
-#define PT_STATE_SLEEP      0x00000010          /* ĞİÃß */
-
-/*
- * ÈÎÎñ×èÈû
- */
-#define PT_BLOCKED_MUTEX    0x00000100          /* »¥³âÁ¿×èÈû */
-#define PT_BLOCKED_SEM      0x00000200          /* ĞÅºÅµÆ×èÈû */
-#define PT_BLOCKED_EVENT    0x00000400          /* ÊÂ¼ş×èÈû */
-#define PT_BLOCKED_MQ       0x00000800          /* ÏûÏ¢×èÈû */
-
-#define IS_BLOCKED(sr)      ((sr) & 0x0F10)     /* ÊÇ·ñ×èÈû task->state */
+#define PT_STATE_SLEEP      0x00000010          /* ä¼‘çœ  */
 
 /*
- * ×èÈûºó, ³¬Ê±»òÕß»ñÈ¡
+ * ä»»åŠ¡é˜»å¡
  */
-#define PT_OBTAIN_MUTEX     0x00001000          /* »ñÈ¡»¥³âÁ¿ */
-#define PT_OBTAIN_SEM       0x00002000          /* »ñÈ¡ĞÅºÅµÆ */
-#define PT_RECV_EVENT       0x00004000          /* »ñÈ¡ÊÂ¼ş */
-#define PT_RECV_MQ          0x00008000          /* »ñÈ¡ÏûÏ¢ */
+#define PT_BLOCKED_MUTEX    0x00000100          /* äº’æ–¥é‡é˜»å¡ */
+#define PT_BLOCKED_SEM      0x00000200          /* ä¿¡å·ç¯é˜»å¡ */
+#define PT_BLOCKED_EVENT    0x00000400          /* äº‹ä»¶é˜»å¡ */
+#define PT_BLOCKED_MQ       0x00000800          /* æ¶ˆæ¯é˜»å¡ */
+
+#define IS_BLOCKED(sr)      ((sr) & 0x0F10)     /* æ˜¯å¦é˜»å¡ task->state */
 
 /*
- * ÈÎÎñÖ´ĞĞÍêºóµÄ²Ù×÷ (Timer)
+ * é˜»å¡å, è¶…æ—¶æˆ–è€…è·å–
  */
-#define PT_WANT_SUSPEND     0x00010000          /* µÈ´ı¹ÒÆğ */
-#define PT_WANT_DELETE      0x00020000          /* µÈ´ıÉ¾³ı */
+#define PT_OBTAIN_MUTEX     0x00001000          /* è·å–äº’æ–¥é‡ */
+#define PT_OBTAIN_SEM       0x00002000          /* è·å–ä¿¡å·ç¯ */
+#define PT_RECV_EVENT       0x00004000          /* è·å–äº‹ä»¶ */
+#define PT_RECV_MQ          0x00008000          /* è·å–æ¶ˆæ¯ */
+
+/*
+ * ä»»åŠ¡æ‰§è¡Œå®Œåçš„æ“ä½œ (Timer)
+ */
+#define PT_WANT_SUSPEND     0x00010000          /* ç­‰å¾…æŒ‚èµ· */
+#define PT_WANT_DELETE      0x00020000          /* ç­‰å¾…åˆ é™¤ */
 
 /**
  * task error
  */
-#define PT_FATAL_STACK_OV   0x0001          /* ÑÏÖØ´íÎ»: ¶ÑÕ»Ô½½ç */
+#define PT_FATAL_STACK_OV   0x0001          /* ä¸¥é‡é”™ä½: å †æ ˆè¶Šç•Œ */
 
-#define PT_TIMEOUT_MUTEX    0x0100          /* »¥³âÁ¿³¬Ê± */
-#define PT_TIMEOUT_SEM      0x0200          /* ĞÅºÅµÆ³¬Ê± */
-#define PT_TIMEOUT_EVENT    0x0400          /* ÊÂ¼ş³¬Ê± */
-#define PT_TIMEOUT_MQ       0x0800          /* ÏûÏ¢³¬Ê± */
+#define PT_TIMEOUT_MUTEX    0x0100          /* äº’æ–¥é‡è¶…æ—¶ */
+#define PT_TIMEOUT_SEM      0x0200          /* ä¿¡å·ç¯è¶…æ—¶ */
+#define PT_TIMEOUT_EVENT    0x0400          /* äº‹ä»¶è¶…æ—¶ */
+#define PT_TIMEOUT_MQ       0x0800          /* æ¶ˆæ¯è¶…æ—¶ */
 
 //-----------------------------------------------------------------------------
 
@@ -91,82 +91,82 @@ typedef void (*pesudo_task_entry_t)(void *arg);
 struct pesudo_task
 {
     uint32_t  ID;
-    char      task_name[PESUDO_NAME_MAX];       /* Ãû³Æ */
-    pesudo_task_entry_t handler;                /* ÈÎÎñÈë¿Ú */
-    void     *arg;                              /* ÈÎÎñ²ÎÊı */
-    uint32_t  first_run_until;                  /* ³õ´ÎÔËĞĞ ticks */
+    char      task_name[PESUDO_NAME_MAX];       /* åç§° */
+    pesudo_task_entry_t handler;                /* ä»»åŠ¡å…¥å£ */
+    void     *arg;                              /* ä»»åŠ¡å‚æ•° */
+    uint32_t  first_run_until;                  /* åˆæ¬¡è¿è¡Œ ticks */
 
-    uint32_t  stack_size;                       /* ¶ÑÕ»´óĞ¡ */
-    size_t   *stack_base;                       /* ¶ÑÕ»»ùÖ· */
-    size_t    stack_cur_top;                    /* µ±Ç°Õ»¶¥*/
+    uint32_t  stack_size;                       /* å †æ ˆå¤§å° */
+    size_t   *stack_base;                       /* å †æ ˆåŸºå€ */
+    size_t    stack_cur_top;                    /* å½“å‰æ ˆé¡¶*/
 
-    volatile uint32_t state;                    /* ×´Ì¬ */
-    volatile uint32_t error;                    /* ³ö´í */
+    volatile uint32_t state;                    /* çŠ¶æ€ */
+    volatile uint32_t error;                    /* å‡ºé”™ */
 
-    volatile size_t   sleep_until;              /* Ë¯ÃßÖÕÖ¹ ticks */
+    volatile size_t   sleep_until;              /* ç¡çœ ç»ˆæ­¢ ticks */
     volatile size_t   wakeup_ticks;
 
-    volatile size_t   block_when;               /* ×èÈû¿ªÊ¼Ê±¼ä */
-    volatile size_t   block_until;              /* ×èÈû³¬Ê± ticks */
+    volatile size_t   block_when;               /* é˜»å¡å¼€å§‹æ—¶é—´ */
+    volatile size_t   block_until;              /* é˜»å¡è¶…æ—¶ ticks */
 
     /*
-     * ÈÎÎñÖĞ mutex¡¢sem¡¢event¡¢mq¡¢sleep ×èÈûµÄÌø³öÎ»ÖÃ
+     * ä»»åŠ¡ä¸­ mutexã€semã€eventã€mqã€sleep é˜»å¡çš„è·³å‡ºä½ç½®
      */
     jmp_buf  func_exit_pos;
 
     /*
-     * ÊÂ¼ş×¨ÓÃ
+     * äº‹ä»¶ä¸“ç”¨
      */
     volatile uint32_t wait_event_bits;
     volatile uint32_t wait_event_flag;
 
     /*
-     * ¶¨Ê±Æ÷×¨ÓÃ
+     * å®šæ—¶å™¨ä¸“ç”¨
      */
     struct pesudo_timer *p_timer;
-    pesudo_task_entry_t timer_callback;         /* Timer »Øµ÷º¯Êı, ²ÎÊı task ×ÔÉí */
+    pesudo_task_entry_t timer_callback;         /* Timer å›è°ƒå‡½æ•°, å‚æ•° task è‡ªèº« */
 
 #if PESUDO_OS_VER <= 2
     volatile void *block_obj;                   /* Only one object will blocked at one time */
 #else
-    TAILQ_ENTRY(pesudo_task) list4event;        /* ¸ø Event ×é³ÉÁ´±í */
-    TAILQ_ENTRY(pesudo_task) list4sem;          /* ¸ø Sem   ×é³ÉÁ´±í */
-    TAILQ_ENTRY(pesudo_task) list4mutex;        /* ¸ø Mutex ×é³ÉÁ´±í */
-    TAILQ_ENTRY(pesudo_task) list4mq;           /* ¸ø MQ    ×é³ÉÁ´±í */
+    TAILQ_ENTRY(pesudo_task) list4event;        /* ç»™ Event ç»„æˆé“¾è¡¨ */
+    TAILQ_ENTRY(pesudo_task) list4sem;          /* ç»™ Sem   ç»„æˆé“¾è¡¨ */
+    TAILQ_ENTRY(pesudo_task) list4mutex;        /* ç»™ Mutex ç»„æˆé“¾è¡¨ */
+    TAILQ_ENTRY(pesudo_task) list4mq;           /* ç»™ MQ    ç»„æˆé“¾è¡¨ */
 #endif
 
-    void *user_data;                            /* ÓÃ»§×Ô¶¨ÒåÊı¾İ */
+    void *user_data;                            /* ç”¨æˆ·è‡ªå®šä¹‰æ•°æ® */
 
     /*
-     * Í³¼ÆÊı
+     * ç»Ÿè®¡æ•°
      */
-    uint64_t run_begintick;                     /* ±¾´ÎÔËĞĞµ÷ÓÃÊ±¼ä */
-    uint32_t run_count;                         /* µ÷ÓÃ´ÎÊı */
-    uint32_t run_ticks;                         /* Ê¹ÓÃtick×ÜÊı */
+    uint64_t run_begintick;                     /* æœ¬æ¬¡è¿è¡Œè°ƒç”¨æ—¶é—´ */
+    uint32_t run_count;                         /* è°ƒç”¨æ¬¡æ•° */
+    uint32_t run_ticks;                         /* ä½¿ç”¨tickæ€»æ•° */
 
-    TAILQ_ENTRY(pesudo_task) list;              /* ÈÎÎñÁ´±í */
+    TAILQ_ENTRY(pesudo_task) list;              /* ä»»åŠ¡é“¾è¡¨ */
 
 };
 
 //-----------------------------------------------------------------------------
 
 /**
- * Ö÷Ñ­»·½øÈëÈÎÎñµÄÎ»ÖÃ
+ * ä¸»å¾ªç¯è¿›å…¥ä»»åŠ¡çš„ä½ç½®
  */
 extern jmp_buf  __mainloop_jmp_pos;
 
 /**
- * µ±Ç°ÕıÔÚÖ´ĞĞµÄÈÎÎñ
+ * å½“å‰æ­£åœ¨æ‰§è¡Œçš„ä»»åŠ¡
  */
 extern struct pesudo_task *current_pesudo_task;
 
 //-----------------------------------------------------------------------------
 
-struct pesudo_task *pesudo_task_create(const char *name,            /* Ãû³Æ */
-                                       uint32_t stack_size,         /* ¶ÑÕ»´óĞ¡ */
-                                       uint32_t run_after_ms,       /* ÑÓ³Ù´¥·¢³õ´ÎÔËĞĞ */
-                                       pesudo_task_entry_t entry,   /* Èë¿Úº¯Êı */
-                                       void *args);                 /* º¯Êı²ÎÊı */
+struct pesudo_task *pesudo_task_create(const char *name,            /* åç§° */
+                                       uint32_t stack_size,         /* å †æ ˆå¤§å° */
+                                       uint32_t run_after_ms,       /* å»¶è¿Ÿè§¦å‘åˆæ¬¡è¿è¡Œ */
+                                       pesudo_task_entry_t entry,   /* å…¥å£å‡½æ•° */
+                                       void *args);                 /* å‡½æ•°å‚æ•° */
 
 void pesudo_task_delete(struct pesudo_task *task);
 void pesudo_task_suspend(struct pesudo_task *task);
@@ -179,4 +179,5 @@ void pesudo_task_sleep(uint32_t ms);
 #endif
 
 #endif // _PESUDO_TASK_H
+
 

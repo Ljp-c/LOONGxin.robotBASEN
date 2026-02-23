@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * Copyright (C) 2021-2024 Suzhou Tiancheng Software Inc. All Rights Reserved.
  *
  */
@@ -38,7 +38,7 @@ extern int register_devicefs(const char *dev_name, const void *device,
                              const driver_ops_t *drv_ops, void *arg);
 
 //-----------------------------------------------------------------------------
-// Éè±¸±í
+// è®¾å¤‡è¡¨
 //-----------------------------------------------------------------------------
 
 #define DEVICE_ID_UART          0x0001
@@ -243,4 +243,5 @@ void register_all_devices(void)
 /*
  * @@ END
  */
+
 

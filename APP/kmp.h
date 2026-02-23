@@ -1,9 +1,10 @@
-#ifndef RB_KMP_H
+ï»¿#ifndef RB_KMP_H
 #define RB_KMP_H
 
 /* KMP algorithm helpers for integer arrays */
 void kmp_build_lps(const int *pat, int N, int *lps);
-/* ÔÚ text ³¤¶È M ÖÐ²éÕÒ pat ³¤¶È N µÄµÚÒ»´Î³öÏÖ£¬·µ»ØÆðÊ¼Ë÷Òý»ò -1£¨ÒªÇó lps ³¤¶È >= N£© */
+/* åœ¨ text é•¿åº¦ M ä¸­æŸ¥æ‰¾ pat é•¿åº¦ N çš„ç¬¬ä¸€æ¬¡å‡ºçŽ°ï¼Œè¿”å›žèµ·å§‹ç´¢å¼•æˆ– -1ï¼ˆè¦æ±‚ lps é•¿åº¦ >= Nï¼‰ */
 int kmp_search(const int *text, int M, const int *pat, int N, int *lps);
 
 #endif // RB_KMP_H
+

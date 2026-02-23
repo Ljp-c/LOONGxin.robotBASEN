@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * Copyright (C) 2021-2024 Suzhou Tiancheng Software Inc. All Rights Reserved.
  */
 /*
@@ -43,26 +43,26 @@ extern uint64_t get_clock_ticks(void);
 // PesudoOS Defination
 //-----------------------------------------------------------------------------
 
-#define PESUDO_NAME_MAX         16          /* Object ÃüÃûµÄ×Ö·ûÊı */
+#define PESUDO_NAME_MAX         16          /* Object å‘½åçš„å­—ç¬¦æ•° */
 
-#define PESUDO_TIMER_MS_MIN     10          /* ¶¨Ê±Æ÷×îĞ¡¶¨Ê±Ê±¼ä */
+#define PESUDO_TIMER_MS_MIN     10          /* å®šæ—¶å™¨æœ€å°å®šæ—¶æ—¶é—´ */
 
 /*
  * Event MQ Mutex Semphore Common Options
  */
 #define PESUDO_OPT_NONE         0x0000
-#define PESUDO_OPT_FIFO         0x0001      /* FIFO  ¸ø1¸ö×èÈû¶ÔÏó¸³Öµ */
-#define PESUDO_OPT_LIFO         0x0002      /* LIFO  ¸ø1¸ö×èÈû¶ÔÏó¸³Öµ */
+#define PESUDO_OPT_FIFO         0x0001      /* FIFO  ç»™1ä¸ªé˜»å¡å¯¹è±¡èµ‹å€¼ */
+#define PESUDO_OPT_LIFO         0x0002      /* LIFO  ç»™1ä¸ªé˜»å¡å¯¹è±¡èµ‹å€¼ */
 #define PESUDO_OPT_MASK         0x00FF
 
-#define PESUDO_OPT_DEFAULT      PESUDO_OPT_FIFO     /* Ä¬ÈÏ */
+#define PESUDO_OPT_DEFAULT      PESUDO_OPT_FIFO     /* é»˜è®¤ */
 
 /*
  * Event Receive Flag
  */
-#define EVENT_FLAG_AND          0x0001      /* ¶à¸öÊÂ¼şÈ«²¿·ûºÏ */
-#define EVENT_FLAG_OR           0x0002      /* ¶à¸öÊÂ¼ş·ûºÏÒ»¸ö¾Í·µ»Ø */
-#define EVENT_FLAG_CLEAR        0x0004      /* »ñÈ¡ÊÂ¼şºóÇå³ı */
+#define EVENT_FLAG_AND          0x0001      /* å¤šä¸ªäº‹ä»¶å…¨éƒ¨ç¬¦åˆ */
+#define EVENT_FLAG_OR           0x0002      /* å¤šä¸ªäº‹ä»¶ç¬¦åˆä¸€ä¸ªå°±è¿”å› */
+#define EVENT_FLAG_CLEAR        0x0004      /* è·å–äº‹ä»¶åæ¸…é™¤ */
 #define EVENT_FLAG_MASK         0x00FF
 
 //-----------------------------------------------------------------------------
@@ -142,11 +142,11 @@ int pesudo_timer_stop(struct pesudo_timer *tmr);
 // Task Functions
 //-----------------------------------------------------------------------------
 
-struct pesudo_task *pesudo_task_create(const char *name,            /* Ãû³Æ */
-                                       uint32_t stack_size,         /* ¶ÑÕ»´óĞ¡ */
-                                       uint32_t run_after_ms,       /* ÑÓ³Ù´¥·¢³õ´ÎÔËĞĞ */
-                                       pesudo_task_entry_t entry,   /* Èë¿Úº¯Êı */
-                                       void *args);                 /* º¯Êı²ÎÊı */
+struct pesudo_task *pesudo_task_create(const char *name,            /* åç§° */
+                                       uint32_t stack_size,         /* å †æ ˆå¤§å° */
+                                       uint32_t run_after_ms,       /* å»¶è¿Ÿè§¦å‘åˆæ¬¡è¿è¡Œ */
+                                       pesudo_task_entry_t entry,   /* å…¥å£å‡½æ•° */
+                                       void *args);                 /* å‡½æ•°å‚æ•° */
 
 void pesudo_task_delete(struct pesudo_task *task);
 void pesudo_task_suspend(struct pesudo_task *task);
@@ -194,4 +194,5 @@ void pesudoos_dbg(unsigned int mask, const char *fmt, ...);
 #endif
 
 #endif // _PESUDOOS_H
+
 

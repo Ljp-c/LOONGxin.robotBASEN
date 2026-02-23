@@ -1,4 +1,4 @@
-/*
+﻿/*
  * fls.c
  */
 
@@ -36,4 +36,5 @@ int fls(int x)
 
     return r;
 }
+
 

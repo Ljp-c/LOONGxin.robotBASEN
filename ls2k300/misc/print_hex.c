@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2021-2024 Suzhou Tiancheng Software Inc. All Rights Reserved.
  *
  */
@@ -43,3 +43,4 @@ void print_hex(char *p, int size)
 
 	printk("\r\n");
 }
+

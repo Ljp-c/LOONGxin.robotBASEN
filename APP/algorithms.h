@@ -1,15 +1,16 @@
-#ifndef RB_ALGORITHMS_H
+ï»¿#ifndef RB_ALGORITHMS_H
 #define RB_ALGORITHMS_H
 
 #include "osal.h"
 
 /*
  * APP/algorithms module
- * ¸ºÔğ£ºÊı¾İ´¦Àí¡¢360¶ÈÆ¥ÅäËã·¨£¨KMP µÈ£©¡¢¸üĞÂ detla_theta1 µÈËã·¨Ïà¹Ø×´Ì¬
- * ¶ÔÍâ±©Â¶£ºalgorithms_init() ÓÃÓÚ´´½¨Ëã·¨ÈÎÎñ
+ * è´Ÿè´£ï¼šæ•°æ®å¤„ç†ã€360åº¦åŒ¹é…ç®—æ³•ï¼ˆKMP ç­‰ï¼‰ã€æ›´æ–° detla_theta1 ç­‰ç®—æ³•ç›¸å…³çŠ¶æ€
+ * å¯¹å¤–æš´éœ²ï¼šalgorithms_init() ç”¨äºåˆ›å»ºç®—æ³•ä»»åŠ¡
  */
 
 void algorithms_init(void);
 int algorithms_get_delta_theta(void);
 
 #endif // RB_ALGORITHMS_H
+

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * Copyright (C) 2021-2024 Suzhou Tiancheng Software Inc. All Rights Reserved.
  *
  */
@@ -374,7 +374,7 @@ void *malloc(size_t size)
      *  |H| block       |H| block                                          |
      *   ---------------|--------------------------------------------------
      *
-     * memory physical address: low -¡úhigh
+     * memory physical address: low -â†’high
      *
      */
 
@@ -390,11 +390,11 @@ void *malloc(size_t size)
      * list:
      *
      *                   found_node           new_node
-     *               -¡ú ----------       -¡ú ----------       -¡ú... next
-     *             ¨J _ | prev     |    ¨J _ | prev     |    ¨J _     node
-     *           ¨J ¨L  |          |  ¨J ¨L  |          |  ¨J ¨L
-     * prev ...¨J ¨L    |     next |¨J ¨L    |     next |¨J ¨L
-     * node ... ¨L      |          |.¨L      |          |.¨L
+     *               -â†’ ----------       -â†’ ----------       -â†’... next
+     *             â†— _ | prev     |    â†— _ | prev     |    â†— _     node
+     *           â†— â†™  |          |  â†— â†™  |          |  â†— â†™
+     * prev ...â†— â†™    |     next |â†— â†™    |     next |â†— â†™
+     * node ... â†™      |          |.â†™      |          |.â†™
      *                  |          |         |          |
      *                   ----------           ----------
      *
@@ -451,18 +451,18 @@ void free(void *ptr)
      * list:
      *
      *               prev node            found node           next node
-     *           -¡ú ----------       -¡ú ----------       -¡ú ----------       -¡ú
-     *         ¨J _ | prev     |    ¨J _ | prev     |    ¨J _ | prev     |    ¨J _ ...
-     *       ¨J ¨L  |          |  ¨J ¨L  |          |  ¨J ¨L  |          |  ¨J ¨L
-     *     ¨J ¨L    |     next |¨J ¨L    |     next |¨J ¨L    |     next |¨J ¨L
-     *  ... ¨L      |          |.¨L      |          |.¨L      |          |.¨L
+     *           -â†’ ----------       -â†’ ----------       -â†’ ----------       -â†’
+     *         â†— _ | prev     |    â†— _ | prev     |    â†— _ | prev     |    â†— _ ...
+     *       â†— â†™  |          |  â†— â†™  |          |  â†— â†™  |          |  â†— â†™
+     *     â†— â†™    |     next |â†— â†™    |     next |â†— â†™    |     next |â†— â†™
+     *  ... â†™      |          |.â†™      |          |.â†™      |          |.â†™
      *              |          |         |          |         |          |
      *               ----------           ----------           ----------
      *
      */
 
 	/*
-     * memory physical address: low -¡úhigh
+     * memory physical address: low -â†’high
      *
      *   ----------------|---------------|---------------------------------
      *  | prev node      | found node    | next node                       |
@@ -573,7 +573,7 @@ void *realloc(void *ptr, size_t size)
 
     if (ptr)
     {
-        free(ptr);      // Èç¹ûÃ»ÓĞÉêÇëµ½ÄÚ´æ, ÊÇ·ñÊÍ·Å?
+        free(ptr);      // å¦‚æœæ²¡æœ‰ç”³è¯·åˆ°å†…å­˜, æ˜¯å¦é‡Šæ”¾?
     }
 
     return NULL;
@@ -665,7 +665,7 @@ void *aligned_realloc(void *ptr, size_t size, unsigned int align)
 
     if (ptr)
     {
-        aligned_free(ptr);      // Èç¹ûÃ»ÓĞÉêÇëµ½ÄÚ´æ, ÊÇ·ñÊÍ·Å?
+        aligned_free(ptr);      // å¦‚æœæ²¡æœ‰ç”³è¯·åˆ°å†…å­˜, æ˜¯å¦é‡Šæ”¾?
     }
 
     return NULL;
@@ -678,3 +678,4 @@ void *aligned_realloc(void *ptr, size_t size, unsigned int align)
 /*
  * @@ END
  */
+

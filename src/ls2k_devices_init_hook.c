@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * Copyright (C) 2021-2024 Suzhou Tiancheng Software Inc. All Rights Reserved.
  *
  */
@@ -10,7 +10,7 @@
  */
 
 /*
- * Æ¬ÉÏÉè±¸³õÊ¼»¯Ê±µ÷ÓÃ, ÓÃÓÚÊµÏÖÒı½Å¸´ÓÃµÈµÄÉèÖÃ
+ * ç‰‡ä¸Šè®¾å¤‡åˆå§‹åŒ–æ—¶è°ƒç”¨, ç”¨äºå®ç°å¼•è„šå¤ç”¨ç­‰çš„è®¾ç½®
  */
 
 #include <stdint.h>
@@ -280,4 +280,5 @@ int ls2k_sdio_init_hook(const void *dev)
 /*
  * @@ END
  */
+
 

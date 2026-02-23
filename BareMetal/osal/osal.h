@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * osal.h
  *
  * created: 2025-01-11
@@ -41,26 +41,26 @@ extern uint64_t get_clock_ticks(void);
 
 //-----------------------------------------------------------------------------
 
-#define OSAL_WAIT_FOREVER       0xFFFFFFFF      /* ÓÀ¾ÃµÈ´ı */
+#define OSAL_WAIT_FOREVER       0xFFFFFFFF      /* æ°¸ä¹…ç­‰å¾… */
 
 #define OSAL_ERR_OK             0
-#define OSAL_ERR_TIMEOUT        1               /* ³¬Ê±·µ»Ø */
-#define OSAL_ERR_INVAL          2               /* ²ÎÊı´íÎ» */
+#define OSAL_ERR_TIMEOUT        1               /* è¶…æ—¶è¿”å› */
+#define OSAL_ERR_INVAL          2               /* å‚æ•°é”™ä½ */
 
 /*
  * Event MQ Mutex Semphore Common Options
  */
-#define OSAL_OPT_FIFO           0x0001          /* ÏÈ½øÏÈ³ö */
-#define OSAL_OPT_LIFO           0x0002          /* ºó½øÏÈ³ö */
-#define OSAL_OPT_PRIO           0x0004          /* °´ÕÕÓÅÏÈ¼¶ */
-#define OSAL_OPT_ALL            0x0008          /* ·Ö·¢¸øÈ«²¿ */
+#define OSAL_OPT_FIFO           0x0001          /* å…ˆè¿›å…ˆå‡º */
+#define OSAL_OPT_LIFO           0x0002          /* åè¿›å…ˆå‡º */
+#define OSAL_OPT_PRIO           0x0004          /* æŒ‰ç…§ä¼˜å…ˆçº§ */
+#define OSAL_OPT_ALL            0x0008          /* åˆ†å‘ç»™å…¨éƒ¨ */
 
 /*
  * Event Receive Flag
  */
-#define OSAL_EVENT_FLAG_AND     0x0001          /* ÊÕµ½È«²¿ÊÂ¼ş */
-#define OSAL_EVENT_FLAG_OR      0x0002          /* ÊÕµ½ÈÎÒ»ÊÂ¼ş */
-#define OSAL_EVENT_FLAG_CLEAR   0x0004          /* ÊÂ¼ş½ÓÊÕºóÇå³ı */
+#define OSAL_EVENT_FLAG_AND     0x0001          /* æ”¶åˆ°å…¨éƒ¨äº‹ä»¶ */
+#define OSAL_EVENT_FLAG_OR      0x0002          /* æ”¶åˆ°ä»»ä¸€äº‹ä»¶ */
+#define OSAL_EVENT_FLAG_CLEAR   0x0004          /* äº‹ä»¶æ¥æ”¶åæ¸…é™¤ */
 
 //-----------------------------------------------------------------------------
 
@@ -77,12 +77,12 @@ typedef void*   osal_timer_t;
 
 typedef void (*osal_task_entry_t)(void *arg);
 
-osal_task_t osal_task_create(const char *name,              /* Ãû³Æ */
-                             uint32_t stack_size,           /* ¶ÑÕ»´óĞ¡ */
-                             uint32_t prio,                 /* ÓÅÏÈ¼¶ */
-                             uint32_t slice,                /* Ê±¼äÆ¬ */
-                             osal_task_entry_t entry,       /* Èë¿Úº¯Êı */
-                             void *args);                   /* º¯Êı²ÎÊı */
+osal_task_t osal_task_create(const char *name,              /* åç§° */
+                             uint32_t stack_size,           /* å †æ ˆå¤§å° */
+                             uint32_t prio,                 /* ä¼˜å…ˆçº§ */
+                             uint32_t slice,                /* æ—¶é—´ç‰‡ */
+                             osal_task_entry_t entry,       /* å…¥å£å‡½æ•° */
+                             void *args);                   /* å‡½æ•°å‚æ•° */
 
 void osal_task_delete(osal_task_t task);
 
@@ -170,7 +170,7 @@ void *osal_malloc(size_t size);
 void osal_free(void *ptr);
 
 //-----------------------------------------------------------------------------
-// ×Ö·û´®³£Á¿
+// å­—ç¬¦ä¸²å¸¸é‡
 //-----------------------------------------------------------------------------
 
 #define STR_OSAL_CREATE_TASK_FAIL   "create osal task %s fail"
@@ -185,4 +185,5 @@ void osal_free(void *ptr);
 #endif
 
 #endif // _OSAL_H
+
 
